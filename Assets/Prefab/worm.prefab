@@ -241,7 +241,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 43.000004, y: 5.5, z: -112}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3573408294855987121}
@@ -344,7 +344,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &7521229914023686491
 MonoBehaviour:
@@ -360,7 +360,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WormPrefab: {fileID: 8554011611181042042}
   WormTail: {fileID: 7688498473021124428, guid: 04a19a30d8701dd43b0600454a449955, type: 3}
-  MoveSpeed: 25
   sec: 1
   gameover: {fileID: 0}
   Keycounts: {fileID: 0}

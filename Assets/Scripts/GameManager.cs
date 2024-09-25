@@ -10,19 +10,10 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-    public static GameManager Instance
-    { get { return instance; } }
-
     [SerializeField] TMP_Text tailcount = null;
     [SerializeField] TMP_Text PT = null;    
 
     public float playtime = 0;
-
-    void Awake()
-    {
-        instance= this;
-    }
 
     void Update()
     {

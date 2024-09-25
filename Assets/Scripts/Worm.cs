@@ -3,26 +3,26 @@ using UnityEngine;
 
 public class Worm : MonoBehaviour
 {
-    public static Worm instance;
+    public static Worm instance;  // 지렁이 머리 싱글톤
     public static Worm Instance
     { get { return instance; } }
 
-    public GameObject WormPrefab;
-    public GameObject WormTail;
+    public GameObject WormPrefab = null;
+    public GameObject WormTail = null;
+    public Vector3 presentPos = Vector2.zero; // 현재 Worm위치
+    public Vector3 afterPos = Vector2.zero;   // 움직이고 난 후 Worm 위치
 
+    public int count = 0;      // 즉 = 꼬리 갯수
     [SerializeField] float sec;
     [SerializeField] GameObject gameover = null;
     [SerializeField] TMP_Text Keycounts = null;
 
-    private float basicSec;
-    private float cooltime = 0f;    // 
+    private float basicSec = 0;
+    private float cooltime = 0;    // 
     private int keycount = 0;       // 0 과 1로 방향이 될지 안될지 결정 지을 변수
     private float keytime = 0;      // keycount 시간을 재기위한 변수
     Vector3 FirstTailPos = Vector3.zero;    // 첫번째 꼬리가 생길 위치
 
-    public int count = 0;      // 즉 = 꼬리 갯수
-    public Vector3 presentPos = Vector2.zero; // 현재 Worm위치
-    public Vector3 afterPos = Vector2.zero;   // 움직이고 난 후 Worm 위치
 
     Tail tail = null;
 
@@ -40,11 +40,11 @@ public class Worm : MonoBehaviour
     {
         if (keycount == 0)
         {
-            Keycounts.text = "dirMove :  X";
+            Keycounts.text = "change direction :  X";
         }
         else if (keycount == 1)
         {
-            Keycounts.text = "dirMove : O";
+            Keycounts.text = "change direction : O";
         }
 
         cooltime += Time.deltaTime;
@@ -57,7 +57,7 @@ public class Worm : MonoBehaviour
         }
 
         WormMove();
-        keyDown();
+        DirKeyDown();
     }
 
     public void WormMove()
@@ -71,12 +71,11 @@ public class Worm : MonoBehaviour
             }
 
             WormPrefab.transform.Translate(new Vector3(0, 0, 1));
-
             cooltime = 0;
         }
     }
 
-    private void keyDown()
+    private void DirKeyDown()
     {
         if (Input.GetKeyDown(KeyCode.A) && keycount >= 1)
         {
@@ -114,7 +113,7 @@ public class Worm : MonoBehaviour
     {
         FirstTailPos = WormPrefab.transform.position - WormPrefab.transform.forward;
         Tail firsttail = WormTail.GetComponent<Tail>();
-        tail = Instantiate(firsttail, FirstTailPos , Quaternion.identity);
+        tail = Instantiate(firsttail, FirstTailPos, Quaternion.identity);
         tail.transform.rotation = WormPrefab.transform.rotation;
     }
 
@@ -144,7 +143,6 @@ public class Worm : MonoBehaviour
             gameover.SetActive(true);
             Time.timeScale = 0;
         }
-
     }
 
 }
